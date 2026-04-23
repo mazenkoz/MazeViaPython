@@ -1,5 +1,9 @@
-# Welcome / level picker frame; delegates layout to welcome_ui helpers.
-# Wires app callbacks: on_select_level opens a maze; on_quit closes the whole program.
+# First-run experience: level grid, embedded instructions, and quit control inside one ``Frame``.
+# Delegates visual packing to ``welcome_ui`` helpers so this class only stores callbacks and
+# forwards button clicks to ``MazeNavigatorApp``.
+#
+# Receives how many levels are unlocked and which are already cleared so buttons can show locks
+# or checkmarks; ``on_quit`` tears down the whole Tk app when the user leaves from the menu.
 from __future__ import annotations
 
 import tkinter as tk

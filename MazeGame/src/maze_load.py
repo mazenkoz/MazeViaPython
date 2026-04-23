@@ -1,5 +1,11 @@
-# Read maze files from disk and validate exactly one S and one G.
-# Used by GUI, text game, and tests — same rules everywhere.
+# Load ASCII maze files from disk into list[list[str]] (one character per cell).
+# Ignores blank lines so trailing newlines in editors do not break rectangular width checks.
+#
+# load_grid() parses, enforces a rectangle, then calls find_start_goal() so every loaded file
+# has exactly one ``S`` and one ``G`` (see ``grid`` for the character constants). Raises
+# ValueError with a short message when the file is empty, ragged, or missing markers.
+#
+# Shared by the Tk GUI, the terminal game, and any tests so validation rules stay consistent.
 from __future__ import annotations
 
 from typing import List, Tuple

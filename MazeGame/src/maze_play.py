@@ -1,5 +1,10 @@
-# Walkability and one-step moves; grid letters in file are never mutated for the player.
-# Player position is tracked separately in UI / text_game; S and G stay in the loaded maze data.
+# Core movement rules: which cells are walkable and how one keypress updates the player.
+# The grid loaded from disk is not edited when the player walks — start/goal letters remain
+# ``S`` and ``G``; UIs keep ``(row, col)`` for the avatar and pass it into move_player().
+#
+# is_walkable() treats anything except ``#`` as passable inside bounds. move_player() maps a
+# direction string (see ``directions``) to a delta and returns the old position if blocked.
+# check_win() compares player tuple to goal tuple (standing on ``G``).
 from __future__ import annotations
 
 from typing import List, Tuple

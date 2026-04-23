@@ -1,5 +1,8 @@
-# Run the GUI as a module: from the project folder, `python -m gui` or `python -m gui -f path/to/maze.txt`.
-# argparse adds --help automatically; file handling matches src/main.py.
+# Allow ``python -m gui`` (with ``src`` on PYTHONPATH or run from layouts that treat ``gui`` as a
+# package). Parses ``--file`` / ``-f`` with argparse; if the path is missing on disk we clear it
+# and fall back to the welcome screen instead of hard-failing, mirroring ``src/main.py`` behaviour.
+#
+# Delegates window creation to ``gui.run_gui`` after resolving the optional maze path.
 from __future__ import annotations
 
 import argparse

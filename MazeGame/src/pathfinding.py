@@ -1,11 +1,17 @@
-# BFS shortest path on the grid (unweighted; each step costs the same).
-# For huge mazes you would store parent pointers instead of full paths in the queue.
+# Breadth-first search for a shortest path on the maze grid (unweighted graph).
+# Each step to a cardinal neighbour costs one; walls block expansion via maze_play.is_walkable.
+#
+# Returns a list of (row, col) cells from start through goal inclusive, or None if the goal
+# lies in another connected component. The queue stores the full path to each frontier cell —
+# simple and fine for classroom-sized mazes; huge maps would use parent pointers and rebuild.
+#
+# Neighbour order is fixed so ties between equal-length paths resolve predictably.
 from __future__ import annotations
 
 from collections import deque
 from typing import List, Optional, Tuple
 
-from game_logic import is_walkable
+from maze_play import is_walkable
 
 
 def find_path(

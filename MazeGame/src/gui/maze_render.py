@@ -1,5 +1,10 @@
-# Draw maze tiles and player on a Tk Canvas (called after canvas.delete("all")).
-# Order: maze layer first, then player — so the blue square is never hidden under a floor tile.
+# Canvas drawing helpers for the maze layer and the player token.
+# Cleared by the caller (``canvas.delete("all")``) before each redraw; draws rectangles per cell
+# using ``constants`` colours, optional path highlight set, then ``player.draw_player`` on top.
+#
+# Maps file characters (``#``, ``.``, ``S``, ``G``) to fill colours; path cells tint floor tiles
+# without overwriting wall/start/goal semantics. Keeps all pixel math in one place so
+# ``MazeGameFrame`` only tracks logical grid state.
 from __future__ import annotations
 
 import tkinter as tk

@@ -1,14 +1,17 @@
-# One level in the GUI: loads maze, handles keys, repaints canvas, notifies app on win.
-# Maze data stays in self.maze; player is drawn from self.player_pos (file letters are not moved).
+# Single-level play screen: ``tk.Frame`` subclass that loads one maze file, owns keyboard focus,
+# and wires canvas redraws to ``maze_render``. Uses ``maze_load`` / ``maze_play`` for the same
+# rules as the terminal game; ``pathfinding.find_path`` paints optional yellow path tiles when asked.
+#
+# Binds WASD / arrows via ``constants.KEY_TO_DIR``, ``R`` reset, ``P`` path preview. On win,
+# invokes optional ``on_level_completed`` / enables Next when part of the numbered campaign.
+# Illegal moves call ``vibration.shake_canvas`` for quick feedback without changing layout.
 from __future__ import annotations
-
 import tkinter as tk
 from tkinter import messagebox
 from typing import Callable, List, Optional, Set, Tuple
-
-from game_logic import check_win, find_start_goal, load_grid, move_player
+from maze_load import find_start_goal, load_grid
+from maze_play import check_win, move_player
 from pathfinding import find_path
-
 from .constants import CELL_PX, KEY_TO_DIR, UI_BG
 from .levels import NUM_LEVELS
 from .maze_play_ui import build_maze_play_ui

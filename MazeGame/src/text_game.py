@@ -1,26 +1,26 @@
-"""Play in the terminal: type wasd / p / q and press Enter after each command."""
+"""Terminal (text-mode) maze: line-based commands and ASCII rendering.
+
+Loads a level with `maze_load`, tracks the player separately from the file grid (`S` / `G`
+stay put), uses `maze_play.move_player` for steps, and `pathfinding.find_path` when the user
+types `p` to preview the shortest route. Prints the grid via `text_display` helpers; quit
+with `q` or end-of-input. Optional argv[1] selects which `.txt` maze to open; otherwise
+`default_level_path` points at the bundled example level.
+"""
 from __future__ import annotations
 
 import os
 import sys
 from pathlib import Path
+from pathfinding import find_path
+from text_display import build_display, default_level_path, format_grid_lines, print_help
+from directions import DOWN, LEFT, RIGHT, UP
+from maze_load import find_start_goal, load_grid
+from maze_play import check_win, move_player
 
 _src = Path(__file__).resolve().parent
 if str(_src) not in sys.path:
     sys.path.insert(0, str(_src))
 
-from game_logic import (
-    DOWN,
-    LEFT,
-    RIGHT,
-    UP,
-    check_win,
-    find_start_goal,
-    load_grid,
-    move_player,
-)
-from pathfinding import find_path
-from text_display import build_display, default_level_path, format_grid_lines, print_help
 
 
 def main_path() -> str:

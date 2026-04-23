@@ -1,5 +1,10 @@
-# Illegal-move feedback: short horizontal shake of everything drawn on the maze canvas.
-# Only the maze canvas moves — easier to notice than shaking the whole window.
+# Lightweight “bump” feedback when ``move_player`` returns the same cell (wall or edge).
+# Schedules a short sequence of horizontal ``place`` offsets on the maze canvas only, so chrome
+# buttons and labels stay steady while the grid wiggles in place.
+#
+# Uses a generation counter on the widget to cancel stale timers if the player bumps again mid
+# animation — only the latest shake sequence completes. Timing and amplitude live in module-level
+# tuples/constants for easy tuning without touching call sites.
 from __future__ import annotations
 
 import tkinter as tk

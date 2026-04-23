@@ -1,7 +1,12 @@
-# Layout only: builds header, maze canvas, status line, and Next button (no game logic).
-# Split out so maze_frame stays focused on state + input; callbacks stay bound to the frame instance.
+# Composes the in-game chrome: header strip, maze ``Canvas``, status label, and control row.
+# Pure layout + widget construction; all behaviour lives in ``MazeGameFrame`` via callbacks
+# passed into ``build_maze_play_ui`` (reset, show path, menu, next level).
+#
+# Returns a small ``MazePlayWidgets`` dataclass so the frame can hold typed references without
+# a tangle of instance attributes. Styling uses ``styles`` helpers for consistent primary/secondary
+# buttons next to ``constants`` colour tokens.
 from __future__ import annotations
-
+from .styles import style_primary_button, style_secondary_button
 from dataclasses import dataclass
 from typing import Callable
 
@@ -15,9 +20,8 @@ from .constants import (
     UI_PANEL,
     UI_TEXT,
     UI_TEXT_MUTED,
+    COLOR_STATUS,
 )
-from .styles import style_primary_button, style_secondary_button
-
 
 @dataclass(frozen=True)
 class MazePlayWidgets:
@@ -118,7 +122,7 @@ def _build_maze_card(
         card,
         text="",
         font=("Segoe UI", 10, "bold"),
-        fg="#27ae60",
+        fg=COLOR_STATUS,
         bg=UI_PANEL,
     )
     status_label.pack(anchor=tk.W, padx=12, pady=(0, 8))

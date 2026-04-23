@@ -1,5 +1,9 @@
-# Player sprite: pixel rectangle inside a grid cell on the canvas.
-# Canvas (0,0) is top-left of the maze area; rows increase downward like the text file.
+# Player avatar drawing on the maze canvas: converts logical (row, col) to pixel rectangles.
+# ``cell_rect`` returns canvas coordinates for a square cell given ``CELL_PX``; ``draw_player``
+# insets a smaller filled rectangle so the token reads clearly on top of floor/start/goal tiles.
+#
+# Coordinate system matches the text files: origin top-left, rows downward. Colour defaults to
+# ``constants.COLOR_PLAYER`` but stays overridable for tests or themes.
 from __future__ import annotations
 
 import tkinter as tk

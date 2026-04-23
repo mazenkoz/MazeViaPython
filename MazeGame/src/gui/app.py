@@ -1,5 +1,10 @@
-# Root window: swaps between welcome screen and maze screen; tracks level unlocks.
-# Only this class ties together “campaign” progress; MazeGameFrame just reports wins via callbacks.
+# Application shell: owns the Tk root, a single container frame, and which child UI is packed.
+# Switches between ``WelcomeFrame`` (level picker + help) and ``MazeGameFrame`` (playfield) by
+# destroying container children — keeps one code path for geometry and background colour.
+#
+# Tracks campaign state: which levels are unlocked and which are completed, driven by callbacks
+# from ``MazeGameFrame`` when the player reaches ``G``. Resolves bundled level paths via
+# ``levels.level_path`` and can open an optional initial maze file passed from ``run_gui``.
 from __future__ import annotations
 
 import tkinter as tk

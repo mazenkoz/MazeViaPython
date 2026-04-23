@@ -1,5 +1,10 @@
-# Shared maze representation: list of rows, each row a list of single-character cells.
-# Row 0 is the top line of the file; col 0 is the leftmost character (matches on-screen layout).
+# Shared maze representation and file alphabet: list of rows, each row a list of one-char cells.
+# Row index 0 is the top line of the level file; column 0 is the left edge (same orientation as
+# the Tk canvas and the printed text view).
+#
+# Exposes WALL/FLOOR/START/GOAL constants, in_bounds / grid_dimensions helpers, shallow copy_grid,
+# and overlay_path for building a display grid with path hints and a ``P`` marker without
+# mutating the original level data structures elsewhere in the app.
 from __future__ import annotations
 
 from typing import List

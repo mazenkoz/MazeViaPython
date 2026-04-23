@@ -1,3 +1,10 @@
+"""Unit tests for breadth-first pathfinding on maze grids.
+
+Builds small in-memory layouts plus loads ``examples/level1.txt`` to ensure the
+real on-disk format stays solvable. Imports ``maze_load`` / ``maze_play`` and the
+``pathfinding`` module with ``src`` prepended to ``sys.path`` so ``python -m unittest``
+works from the ``MazeGame`` directory without installing a package.
+"""
 from __future__ import annotations
 
 import sys
@@ -7,7 +14,8 @@ from pathlib import Path
 _SRC = Path(__file__).resolve().parent.parent / "src"
 sys.path.insert(0, str(_SRC))
 
-from game_logic import find_start_goal, is_walkable, load_grid  # noqa: E402
+from maze_load import find_start_goal, load_grid  # noqa: E402
+from maze_play import is_walkable  # noqa: E402
 from pathfinding import find_path  # noqa: E402
 
 

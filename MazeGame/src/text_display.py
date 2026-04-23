@@ -1,5 +1,10 @@
-# Helpers for the terminal (text) maze view: formatting and merging player/path onto the grid.
-# The text game prints these strings; the underlying maze list from load_grid is not edited for movement.
+# Helpers for the terminal maze view: pretty-printing and building a display copy of the grid.
+# format_grid_lines joins rows for printing; build_display overlays the player (and optional
+# shortest-path cells) using grid.copy_grid / grid.overlay_path so the canonical maze from
+# maze_load is never mutated when the user moves.
+#
+# default_level_path points at the bundled examples/level1.txt under the project root.
+# print_help emits the one-screen control summary when a text session starts.
 from __future__ import annotations
 
 from pathlib import Path

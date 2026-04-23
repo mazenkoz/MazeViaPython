@@ -1,5 +1,8 @@
-# Colours, sizes, and keyboard map for the Tkinter UI (no game rules here).
-# Game logic lives in game_logic / pathfinding; this file is presentation only.
+# Presentation tokens for the Tkinter front-end: maze tile palette, window sizing, UI chrome
+# colours, and ``KEY_TO_DIR`` mapping from keysyms / WASD characters to ``directions`` names.
+#
+# No maze parsing or movement rules — those live in ``maze_load``, ``maze_play``, and
+# ``pathfinding``. ``INSTRUCTIONS_TEXT`` is the copy inserted into the welcome screen scroll box.
 from __future__ import annotations
 
 from directions import DOWN, LEFT, RIGHT, UP
@@ -11,6 +14,7 @@ COLOR_START = "#2ecc71"
 COLOR_GOAL = "#e74c3c"
 COLOR_PLAYER = "#3498db"
 COLOR_PATH = "#f1c40f"
+COLOR_STATUS = "#27ae60"
 # Width and height of one grid cell in pixels (maze size in px = cols*CELL_PX by rows*CELL_PX).
 CELL_PX = 28
 
@@ -46,3 +50,19 @@ KEY_TO_DIR = {
     "D": RIGHT,
     "Right": RIGHT,
 }
+# Long copy for the welcome screen (inserted into a read-only ScrolledText).
+# Edit this string to change what new players read; the widget is read-only at runtime.
+INSTRUCTIONS_TEXT = """How to play
+• Start on green (S). Move the blue player to the red goal (G).
+
+Controls
+• WASD or arrow keys — move
+• P — show shortest path (yellow tiles)
+• R — reset this level
+
+Colours
+• Black — wall    • White — floor
+• Green — start    • Red — goal
+• Blue — player    • Yellow — path
+
+Choose a level below, or use Main menu later to switch levels."""

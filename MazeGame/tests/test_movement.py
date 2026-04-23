@@ -1,3 +1,10 @@
+"""Unit tests for movement, walkability, and maze file loading invariants.
+
+Covers ``move_player`` against walls and grid edges, ``is_walkable`` semantics,
+``load_grid`` validation (rectangle, exactly one S/G), and a quick sweep that
+``examples/level1.txt`` … ``level8.txt`` all parse. Uses the same ``src`` path
+hack as ``test_pathfinding`` so imports match the flat student layout.
+"""
 from __future__ import annotations
 
 import os
@@ -9,16 +16,9 @@ from pathlib import Path
 _SRC = Path(__file__).resolve().parent.parent / "src"
 sys.path.insert(0, str(_SRC))
 
-from game_logic import (  # noqa: E402
-    DOWN,
-    LEFT,
-    RIGHT,
-    UP,
-    find_start_goal,
-    is_walkable,
-    load_grid,
-    move_player,
-)
+from directions import DOWN, LEFT, RIGHT, UP  # noqa: E402
+from maze_load import find_start_goal, load_grid  # noqa: E402
+from maze_play import is_walkable, move_player  # noqa: E402
 
 
 class TestMovement(unittest.TestCase):

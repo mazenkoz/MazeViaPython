@@ -1,13 +1,16 @@
-# Welcome screen layout pieces (header, level grid, help text, quit) — no app logic.
-# WelcomeFrame passes callbacks and progression numbers in; this module only packs widgets.
+# Stateless layout builders for the welcome screen: outer shell, eight level buttons in a grid,
+# read-only ``ScrolledText`` seeded from ``constants.INSTRUCTIONS_TEXT``, and a styled Quit row.
+#
+# ``pack_level_buttons`` applies primary/disabled styles based on unlock/completion sets and uses
+# default-arg lambdas so every button captures the right level index. No maze rules here — only
+# Tk packing geometry and typography tokens shared with the rest of the GUI.
 from __future__ import annotations
 
 import tkinter as tk
 from tkinter import scrolledtext
 from typing import Callable, Set
 
-from .constants import UI_BG, UI_BORDER, UI_HEADER, UI_PANEL, UI_TEXT, UI_TEXT_MUTED
-from .help_text import INSTRUCTIONS_TEXT
+from .constants import INSTRUCTIONS_TEXT, UI_BG, UI_BORDER, UI_HEADER, UI_PANEL, UI_TEXT, UI_TEXT_MUTED
 from .styles import style_primary_button, style_secondary_button
 
 

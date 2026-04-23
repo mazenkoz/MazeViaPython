@@ -1,5 +1,10 @@
-# Paths to bundled examples/level1.txt … level8.txt and filename → level number.
-# EXAMPLES_DIR is resolved from this file’s location so it works regardless of cwd.
+# Campaign data: locates the ``examples`` directory next to the project root and maps level
+# numbers 1..NUM_LEVELS to ``levelN.txt`` paths. ``level_num_from_path`` recognises the same
+# naming convention so ``MazeNavigatorApp`` can unlock the next stage after a win.
+#
+# Paths are derived from ``__file__`` so the game finds assets even when the process cwd differs.
+# Custom maze filenames still load; they simply return ``None`` from ``level_num_from_path`` and
+# skip automatic “next level” progression hooks.
 from __future__ import annotations
 
 import re
