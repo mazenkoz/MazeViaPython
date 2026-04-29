@@ -29,7 +29,7 @@ All run commands below expect your terminal’s **current directory** to be the 
 If you downloaded or unzipped the repo so it looks like this:
 
 ```text
-MazeViaPython/
+MazeNavigator/
   MazeGame/
     src/
     examples/
